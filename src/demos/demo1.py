@@ -11,14 +11,21 @@ Input:
 Output: [3,5,1]
 """
 # Definition for a binary tree node.
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 def inorder_traversal(root):
-    pass
+    if not root:
+        return []
+    left = inorder_traversal(root.left)
+    right = inorder_traversal(root.right)
+    return left + [root.val] + right
 
 
 t1 = TreeNode(3)
