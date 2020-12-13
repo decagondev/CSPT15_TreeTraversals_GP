@@ -30,7 +30,12 @@ def inorder_traversal(root):
 # define a helper function for a pre order traversal
 
 def preorder_helper(root, res):
-    pass
+    if root is None:
+        return
+    # pre order
+    res.append(root.val)
+    inorder_helper(root.left, res)
+    inorder_helper(root.right, res)
 
 def preorder_traversal(root):
     # store our result
@@ -45,7 +50,12 @@ def preorder_traversal(root):
 # define a helper function for a post order traversal
 
 def postorder_helper(root, res):
-    pass
+    if root is None:
+        return
+    inorder_helper(root.left, res)
+    inorder_helper(root.right, res)
+    # post order
+    res.append(root.val)
 
 def postorder_traversal(root):
     # store our result
@@ -74,5 +84,26 @@ def breadth_first_traversal(root):
 
         if node.right is not None:
             queue.append(node.right)
+
+    return result
+
+
+def depth_first_traversal(root):
+    if root is None:
+        return []
+
+    result = []
+    stack = []
+    stack.append(root)
+
+    while len(stack) != 0:
+        node = stack.pop()
+
+        result.append(node.val)
+        if node.left is not None:
+            stack.append(node.left)
+
+        if node.right is not None:
+            stack.append(node.right)
 
     return result
